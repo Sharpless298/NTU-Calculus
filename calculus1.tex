@@ -1,0 +1,191 @@
+\documentclass{article}
+\usepackage{amsthm}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{lmodern}
+\usepackage{hyperref}
+\usepackage{mathtools}
+
+\setlength{\parindent}{0pt}
+
+\theoremstyle{definition}
+\newtheorem{theorem}{Theorem}
+\newtheorem{proposition}{Proposition}
+\newtheorem{lemma}{Lemma}
+\newtheorem{example}{Example}
+\newtheorem{definition}{Definition}
+\providecommand*{\definitionautorefname}{Definition}
+\newtheorem{remark}{Remark}
+\newtheorem{property}{Property}
+\newtheorem{exercise}{Exercise}
+
+\providecommand*{\theoremautorefname}{Theorem}
+\providecommand*{\lemmaautorefname}{Lemma}
+\providecommand*{\propositionautorefname}{Proposition}
+\providecommand*{\definitionautorefname}{Definition}
+\providecommand*{\exampleautorefname}{Example}
+\providecommand*{\remarkautorefname}{Remark}
+\providecommand*{\propertyautorefname}{Property}
+\providecommand*{\exerciseautorefname}{Exercise}
+
+\begin{document}
+
+\begin{definition}[Supremum / Least Upper Bound]
+Let $S \subset \mathbb{R}$ be a non-empty set that is bounded above.  
+A real number $u$ is called the \emph{supremum} (least upper bound) of $S$, denoted by $\sup S$, if
+\begin{enumerate}
+  \item $u$ is an upper bound of $S$, i.e., $s \le u$ for all $s \in S$;
+  \item for any $\epsilon > 0$, there exists $s \in S$ such that $s > u - \epsilon$.
+\end{enumerate}
+\end{definition}
+
+\begin{definition}[Infimum / Greatest Lower Bound]
+Let $S \subset \mathbb{R}$ be a non-empty set that is bounded below.  
+A real number $l$ is called the \emph{infimum} (greatest lower bound) of $S$, denoted by $\inf S$, if
+\begin{enumerate}
+  \item $l$ is a lower bound of $S$, i.e., $s \ge l$ for all $s \in S$;
+  \item for any $\epsilon > 0$, there exists $s \in S$ such that $s < l + \epsilon$.
+\end{enumerate}
+\end{definition}
+
+By convention,
+\begin{enumerate}
+    \item $\sup S = \infty\ (\text{resp.\ } \inf S = -\infty)$
+whenever $S$ has no upper (resp.\ lower) bound.
+    \item $S$ is bounded above (resp.\ below) $\iff S$ has a upper (resp.\ lower) bound.
+\end{enumerate}
+
+\begin{remark}
+Every $r \in \mathbb{R}$ is a upper bound and lower bound of $\varnothing$.
+\end{remark}
+
+\begin{definition}[Dedekind cut]
+Let $A, B \subseteq \mathbb{R}$. We say that $(A, B)$ is a \emph{Dedekind cut} of $\mathbb{R}$ if following conditions hold:
+\begin{enumerate}
+    \item $A \neq \varnothing \neq B$;
+    \item $A \cup B = \mathbb{R}$;
+    \item $\forall a \in A, \forall b \in B, \ a < b$.
+\end{enumerate}
+\end{definition}
+
+\begin{property}[Dedekind's gapless property]\label{p1}
+    If (A,B) is a Dedekind cut, then exactly one of the following happens:
+    \begin{enumerate}
+        \item $\max A$ exists but $\min B$ doesn't;
+        \item $\min B$ exists but $\max A$ doesn't.
+    \end{enumerate}
+\end{property}
+
+\begin{exercise}
+    We may define Dedekind cuts of $\mathbb{Q}$ and $\mathbb{Z}$ similarly.
+    Does the $\textbf{\autoref{p1}}$ hold for $\mathbb{Q}$ or $\mathbb{Z}$?
+\end{exercise}
+
+\begin{property}[Least upper bound property]
+    If $S$ has a upper bound, then $\sup S$ exists.
+\end{property}
+
+\begin{proof}
+    Let $\varnothing \neq S \subseteq \mathbb{R}$, $B\coloneqq\{b\in\mathbb{R}\mid b \text{ is upper bound of } S\}$ and $A\coloneqq\mathbb{R} \setminus B.$
+    We need to show that $\min B$ exists. First, we prove that $(A,B)$ forms a \emph{Dedekind cut} of $\mathbb{R}$.
+    \begin{enumerate}
+        \item $S \neq \varnothing \implies A \neq \varnothing$, and $S$ has an upper bound $\iff B  \neq \varnothing$
+        \item $A=\mathbb{R}\setminus B \implies A\cup B = \mathbb{R}$
+        \item For $a\in A \text{ and } b\in B$, we need to show that $a<b$. 
+            Assume the contrary, that $a\geq b$. Hence $a$ is an upper bound of $S$, i.e., $a\in B$ and
+            $a\in A\cap B = \varnothing$. Therefore, our assumption is false, and $a < b$.
+    \end{enumerate}
+    Hence $(A,B)$ is a \emph{Dedekind cut} of $\mathbb{R}$.
+
+    Next we prove that $\min B$ exists.
+    Again, we assume the contrary, that $\max A$ exists, denoted by $a_0$.
+    \begin{gather*}
+        a_0\in A \iff a_0 \notin B \iff a_0 \text{ is not an upper bound of } S \\
+        \iff \exists s_0 \in S \text{ such that } a_0<s_0
+    \end{gather*}
+    Choose $x$ such that $a_0<x<s_0$. Then $a_0<x \iff x\in B$, hence $x$ is an upper bound of $S$, but $x < s_0$.
+    Therefore, our assumption is false, and $\min B$ exists.(\autoref{p1})
+\end{proof}
+
+\begin{property}[Greatest lower bound property]
+    If $S$ has a lower bound, then $\inf S$ exists.
+\end{property}
+
+\begin{exercise}[Archimedean property] 
+    Prove that
+    $$\forall r \in \mathbb{R}, r>0 \implies \exists n \in \mathbb{N} \text{ such that } \frac{1}{n} < r$$
+\end{exercise}
+
+\textbf{Hint:} Rephrase this statement in terms of the set $S = \mathbb{N} \subseteq \mathbb{R}$ 
+and consider its upper bounds.
+
+\begin{definition}[Limit of a Sequence]
+Let $(a_n)$ be a sequence. We say that $(a_n)$ \emph{converges} to a real number $L$, or that $L$ is the \emph{limit} of $(a_n)$, if $\forall \varepsilon > 0$, there exists a positive integer $N$ such that $\forall n > N$,
+\[
+|a_n - L| < \varepsilon.
+\]
+In this case, we write
+\[
+\lim_{n \to \infty} a_n = L.
+\]
+\end{definition}
+
+\begin{exercise}\label{e3}
+    Prove that
+    \begin{enumerate}
+        \item $\lim\limits_{n \to \infty} a_n = L, \lim\limits_{n \to \infty} a_n = M \implies L=M$
+        \item $a_n\ (n\in \mathbb{N})$ is convergent $\implies \{a_n\mid n \in \mathbb{N}\}$ is bounded.
+        \item If $a_n\leq b_n$ for all $n\in \mathbb{N}$, $\lim\limits_{n\to \infty} a_n =L$ and $\lim\limits_{n\to \infty} b_n=M$, then $L\leq M$.
+            What if "$\leq$" is replaced by "$<$"?
+    \end{enumerate}
+\end{exercise}
+
+\begin{remark}
+    Modifying or removing \emph{finitely many terms} of a sequence $(a_n)$ does not affect its convergence or divergence, nor the value of its limit if it exists.
+\end{remark}
+
+\begin{proposition}
+    If $\lim\limits_{n\to \infty}a_n=L$ and $\lim\limits_{n\to \infty}b_n=M$, then
+    \begin{enumerate}
+        \item $\lim\limits_{n\to \infty}(a_n\pm b_n)=L\pm M$;
+        \item $\lim\limits_{n\to \infty}a_n b_n=L\cdot M$;
+        \item If $M\neq 0$, then $b_n \neq 0$ for all but finitely many $n$, and $\lim\limits_{n\to \infty}\frac{a_n}{b_n}=\frac{L}{M}$.
+    \end{enumerate}
+\end{proposition}
+
+$Proof.$
+\newline
+1.
+Consider $\lvert (a_n\pm b_n)-(L\pm M)\rvert$.
+\begin{displaymath}
+\lvert(a_n\pm b_n)-(L\pm M)\rvert=\lvert(a_n-L)\pm (b_n-M)\leq \lvert a_n-L\rvert+\lvert b_n-M\rvert
+\end{displaymath}
+\begin{gather*}
+    \forall \varepsilon>0,\,\exists N_1,N_2\in \mathbb{N}[n\geq N_1 \implies \lvert a_n-L\rvert<\frac{\varepsilon}{2}]\\
+\text{ and } [n\geq N_2 \implies \lvert b_n-M\rvert<\frac{\varepsilon}{2}]
+\end{gather*}
+Let $N=\max\{N_1,N_2\}$. Then $$n\geq N\implies \lvert(a_n\pm b_n)-(L\pm M)\rvert \leq \lvert a_n-L\rvert+\lvert b_n-M\rvert<\frac{\varepsilon}{2}+\frac{\varepsilon}{2}=\varepsilon$$
+\qed
+
+2.
+Consider $\lvert a_n b_n-LM\rvert$.
+
+\begin{gather*}
+    |a_n b_n - LM|
+    = |a_n b_n - L b_n + L b_n - LM| \\
+    \leq |a_n - L| \, |b_n| + |L| \, |b_n - M|.
+\end{gather*}
+Since $b_n \to M$, the sequence $(b_n)$ is bounded (By $\autoref{e3}$).
+Thus, there exists $c > 0$ such that $|b_n| \leq c$ and $|L| \leq c$ for all $n\in \mathbb{N}$. 
+Therefore,
+\[
+    |a_n b_n - LM| \leq c |a_n - L| + c\, |b_n - M|.
+\]
+\[
+    \forall \varepsilon>0,\,\exists N \in \mathbb{N}[n\geq N\implies |a_n-L|<\frac{\varepsilon}{2c}\text{ and }|b_n-M|<\frac{\varepsilon}{2c}]
+\]
+\[
+    \implies |a_n b_n-LM|<c\frac{\varepsilon}{2c}+c\frac{\varepsilon}{2c}=\varepsilon
+\]
+\qed
+\end{document}
