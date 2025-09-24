@@ -4,6 +4,7 @@
 \usepackage{amssymb}
 \usepackage{lmodern}
 \usepackage{hyperref}
+\usepackage{cleveref}
 \usepackage{mathtools}
 
 \setlength{\parindent}{0pt}
@@ -14,11 +15,11 @@
 \newtheorem{lemma}{Lemma}
 \newtheorem{example}{Example}
 \newtheorem{definition}{Definition}
-\providecommand*{\definitionautorefname}{Definition}
 \newtheorem{remark}{Remark}
 \newtheorem{property}{Property}
 \newtheorem{exercise}{Exercise}
 
+\providecommand*{\definitionautorefname}{Definition}
 \providecommand*{\theoremautorefname}{Theorem}
 \providecommand*{\lemmaautorefname}{Lemma}
 \providecommand*{\propositionautorefname}{Proposition}
@@ -144,7 +145,7 @@ In this case, we write
     Modifying or removing \emph{finitely many terms} of a sequence $(a_n)$ does not affect its convergence or divergence, nor the value of its limit if it exists.
 \end{remark}
 
-\begin{proposition}
+\begin{proposition}\label{prop:1}
     If $\lim\limits_{n\to \infty}a_n=L$ and $\lim\limits_{n\to \infty}b_n=M$, then
     \begin{enumerate}
         \item $\lim\limits_{n\to \infty}(a_n\pm b_n)=L\pm M$;
@@ -175,7 +176,7 @@ Consider $\lvert a_n b_n-LM\rvert$.
     = |a_n b_n - L b_n + L b_n - LM| \\
     \leq |a_n - L| \, |b_n| + |L| \, |b_n - M|.
 \end{gather*}
-Since $b_n \to M$, the sequence $(b_n)$ is bounded (By $\autoref{e3}$).
+Since $b_n \to M$, the sequence $(b_n)$ is bounded (By $\textbf{\autoref{e3}}$).
 Thus, there exists $c > 0$ such that $|b_n| \leq c$ and $|L| \leq c$ for all $n\in \mathbb{N}$. 
 Therefore,
 \[
@@ -188,4 +189,8 @@ Therefore,
     \implies |a_n b_n-LM|<c\frac{\varepsilon}{2c}+c\frac{\varepsilon}{2c}=\varepsilon
 \]
 \qed
+
+\begin{exercise}
+    Prove 3. in $\textbf{\autoref{prop:1}}$.
+\end{exercise}
 \end{document}
