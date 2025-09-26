@@ -1,0 +1,126 @@
+\documentclass{article}
+\usepackage{amsthm}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{lmodern}
+\usepackage{hyperref}
+\usepackage{cleveref}
+\usepackage{mathtools}
+\usepackage{stmaryrd}
+
+\setlength{\parindent}{0pt}
+\linespread{1.4}
+
+\theoremstyle{definition}
+\newtheorem{theorem}{Theorem}
+\newtheorem{proposition}{Proposition}
+\newtheorem{lemma}{Lemma}
+\newtheorem{example}{Example}
+\newtheorem{definition}{Definition}
+\newtheorem{remark}{Remark}
+\newtheorem{property}{Property}
+\newtheorem{exercise}{Exercise}
+
+\providecommand*{\definitionautorefname}{Definition}
+\providecommand*{\theoremautorefname}{Theorem}
+\providecommand*{\lemmaautorefname}{Lemma}
+\providecommand*{\propositionautorefname}{Proposition}
+\providecommand*{\definitionautorefname}{Definition}
+\providecommand*{\exampleautorefname}{Example}
+\providecommand*{\remarkautorefname}{Remark}
+\providecommand*{\propertyautorefname}{Property}
+\providecommand*{\exerciseautorefname}{Exercise}
+
+\begin{document}
+\begin{example}
+    If $a>1$, then $\lim\limits_{n \to \infty} \frac{1}{a^n}=0$.
+\end{example}
+
+\begin{proof}[Solution]
+$\frac{1}{a^n}=\frac{1}{(1+(a-1))^n}\leq\frac{1}{1+n(a-1)}$
+\end{proof}
+
+\begin{exercise}[Squeeze theorem]
+    If $n\in \mathbb{N}$, $a_n\leq c_n\leq b_n$.
+
+    $$\lim_{n\to \infty} a_n=\lim_{n\to \infty} b_n = L \implies \lim_{n\to \infty} c_n = L$$
+\end{exercise}
+
+\begin{theorem}
+    If $a_n$ is increasing and $\{a_n \mid n\in \mathbb{N}\}$ has an upper bound, then $a_n$ converges.
+\end{theorem}
+\begin{proof}
+    $\{a_n\mid n\in \mathbb{N}\}$ has an upper bound $\implies \sup\{a_n\mid n\in \mathbb{N}\}$ exists.
+
+    For convenience, we denote $\sup\{a_n\mid n\in \mathbb{N}\}$ by $L$.
+
+    $\forall \varepsilon>0, L-\varepsilon<L$, and hence $\exists N\in \mathbb{N}\ \llbracket L-\varepsilon<a_N\rrbracket$($\implies L-\varepsilon$ is not an upper bound.)
+    
+
+    $\forall n \geq \mathbb{N}\ \llbracket L-\varepsilon<a_N\leq a_n\leq L < L + \varepsilon\rrbracket \implies |a_n-L|<\varepsilon$
+\end{proof}
+
+\begin{definition}
+    A sequence of intervals $I_n\ (n\in \mathbb{N})$ is nested if $I_n\neq \varnothing$ and $I_{n+1} \subseteq I_n$ for all n $\in \mathbb{N}$.
+\end{definition}
+
+\begin{theorem}[Nested intervals theorem]
+    If $I_n\ (n\in \mathbb{N})$ is a sequence of bounded closed nested intervals, then $$\bigcap_{n\in \mathbb{N}} I_n \neq \varnothing$$
+\end{theorem}
+
+\begin{proof}
+
+    Write $I_n=[a_n,b_n]$ $(n\in \mathbb{N})$
+
+    $I_n$ is nested $\iff a_n\leq b_n,\,a_n \nearrow$ and $b_n \searrow$
+
+    $\forall n, m\in \mathbb{N}\quad a_n\leq a_{\max(n, m)}\leq b_{\max(n, m)}\leq b_m$
+    
+    In other words, for every $m\in \mathbb{N}$, $b_m$ is an upper bound of $\{a_n \mid n\in \mathbb{N}\}$.
+
+    Let $c=\lim_{n\to \infty} a_n$. Then $a_n\leq c\leq b_mm$ for all $m\in \mathbb{N} \implies$ $$c \in \bigcap_{n\in \mathbb{N}} I_n$$
+\end{proof}
+
+\begin{exercise}
+    What if 
+
+    \begin{enumerate}
+        \item $I_n=(a_n, b_n)$, nested, but $a_n\nearrow\nearrow$ and $b_n\searrow\searrow$.
+        \item $I_n=(a_n, \infty)$, nested and $\{a_n\mid n\in \mathbb{N}\}$ is bounded from above.
+    \end{enumerate}
+\end{exercise}
+
+\begin{exercise}
+    Prove the \textbf{Dedekind gapless property} using \textbf{Archimedean property} and the \textbf{nested intervals theorem}.
+\end{exercise}
+
+\begin{definition}
+    A sequence $a_n\ (n\in \mathbb{N})$ in $\mathbb{R}$ is a Cauchy sequence if 
+    $$\forall \varepsilon > 0 \quad \exists N\in \mathbb{N}\ \llbracket n, m\geq\mathbb{N}\implies|a_n-a_m|<\varepsilon\rrbracket$$
+\end{definition}
+
+Obviously, 
+\begin{itemize}
+    \item $a_n$ is convergent$\implies a_n$ is Cauchy sequence
+    \item $a_n$ is Cauchy sequence$\implies a_n$ is bounded
+\end{itemize}
+
+\begin{definition}
+    Let $a_n\ (n\in \mathbb{N})$ be a \emph{bounded} sequence in $\mathbb{R}$.
+
+    $u_n:=\sup\{a_m\mid m \geq n\}$, $l_n:=\inf\{a_m\mid m \geq n\}$
+    
+    $\forall n\in \mathbb{N}\ \llbracket l_n\leq a_n \leq u_n\rrbracket$
+
+    $\mathop{\overline{\lim}}\limits_{n\to \infty} a_n:=\lim\limits_{n\to \infty} u_n$, $\mathop{\underline{\lim}}\limits_{n\to \infty} a_n:=\lim\limits_{n\to \infty} l_n$
+\end{definition}
+
+\begin{exercise}
+    $a_n$ converges $\iff \mathop{\overline{\lim}}\limits_{n\to \infty} a_n = \mathop{\underline{\lim}}\limits_{n\to \infty} a_n$, and if any of both sides holds, then $\lim\limits_{n\to \infty} a_n = \mathop{\overline{\lim}}\limits_{n\to \infty} a_n = \mathop{\underline{\lim}}\limits_{n\to \infty} a_n$.
+\end{exercise}
+
+\begin{theorem}
+    Let $a_n\ (n\in \mathbb{N})$ be a sequence in $\mathbb{R}$.
+    $$a_n\text{ is convergent }\iff a_n\text{ is a Cauchy sequence}$$
+\end{theorem}
+\end{document}
